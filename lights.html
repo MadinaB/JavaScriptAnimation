@@ -1,0 +1,107 @@
+<! DOCTYPE html>
+<html>
+<head>
+<meta charset = "UTF-8">
+<style>
+body {
+    background-image: url(http://www.cssauthor.com/wp-content/uploads/2012/12/Beautiful-christmas-tree.png);
+	background-align: center;
+    margin: 0; 
+	padding: 0;
+}
+.lamp {
+    width: 20px;
+	height: 20px;
+    display: inline-block;
+	margin: 0px 10px;
+	border-radius: 100% 4px;
+	transform: rotate(-45deg);
+}
+.lamp:nth-child(odd){
+    background: #8A2BE2;
+	opacity: 1;
+	box-shadow: 1px 1px 15px #8A2BE2, -1px -1px 15px #8A2BE2;
+	animation: lamp-pulse-1 0.8s linear 0s infinite alternate;
+}
+.lamp:nth-child(even){
+    background: #FFD700;
+	opacity: .3;
+	box-shadow: none;
+	animation: lamp-pulse-2 0.8s linear 0s infinite alternate;
+}
+@keyframes lamp-pulse-1 {
+    from { box-shadow: 1px 1px 15px #8A2BE2, -1px -1px 15px #8A2BE2; opacity:1;}
+	to {box-shadow: none; opacity .3;}
+}
+@keyframes lamp-pulse-2 {
+    from {box-shadow: none; opacity .3;}
+	to { box-shadow: 1px 1px 15px #FFD700, -1px -1px 15px #FFD700; opacity:1;}
+	
+}
+canvas {
+    position: absolute;
+	top: 50%;
+	left: 50%;
+	transform:translateX(-50%) translateY(-50%);
+	box-shadow: 0 0 10px 0 #999
+}
+
+ 
+</style>
+<script type = "text/javascript">
+    function init() {
+    var canvas = document.getElementById("canvas");
+    var ctx = canvas.getContext("2d");
+	var w=canvas.width;
+	var h=canvas.height;
+	
+	var bg = new Image();
+	
+	var flakes = []
+	
+	function snowfall(){
+	    ctx.clearRect(0, 0, w, h);
+	    ctx.drawImage(bg, 0, 0);
+		addFlake();
+		snow();
+    };
+	function addFlake(){
+	    var x = Math.ceil(Math.random()*w);
+		var s = Math.ceil(Math.random()*4);
+		flakes.push({"x":x, "y": 0, "s":s});
+		};
+	function snow(){
+	for(var i=0; i<flakes.length; i++){
+	    var flake = flakes[i];
+		ctx.beginPath();
+		ctx.fillStyle = "rgba(255, 255, 255, 0.7)";
+		ctx.arc(flake.x, flakes[i].y+=flake.s/2, flake.s/2, 0, 2*Math.PI);
+		ctx.fill();
+		if(flakes[i].y> h){
+		    flakes.splice(i, 1);
+		};
+	};
+    };
+	
+	setInterval(snowfall, 20);
+};
+window.onload = init;
+</script>
+</head>
+<body>
+<div id = "lights" style = "text-align:center"> </div>
+    <script>
+        for (var i=0; i<20; i++){
+        var lamp = document.createElement("div");
+        lamp.className = "lamp";
+        var rand = Math.floor(Math.random()*180) + 1;
+        lamp.style.transform = "rotate(" + rand + "deg)";
+        document.getElementById("lights").appendChild(lamp);}
+    </script>
+    <canvas id="canvas" width="778" height = "387"></canvas>
+	<div class="stars"></div>
+    <div class="twinkling"></div>
+    <div class="clouds"></div>
+
+</body>
+</html>
