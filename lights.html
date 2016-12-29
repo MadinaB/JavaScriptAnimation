@@ -4,23 +4,23 @@
 <meta charset = "UTF-8">
 <style>
 body {
-    background-image: url(http://www.cssauthor.com/wp-content/uploads/2012/12/Beautiful-christmas-tree.png);
-	background-align: center;
-    margin: 0; 
+    background: url(https://www.freeiworktemplates.com/wp-content/uploads/2015/12/Abstract-Golden-Christmas-Tree-Artwork-Wallpaper-1080x675.jpg) no-repeat center center fixed;
+	background-size: cover;
+	margin: 0; 
 	padding: 0;
 }
 .lamp {
-    width: 20px;
-	height: 20px;
+    width: 40px;
+	height: 40px;
     display: inline-block;
-	margin: 0px 10px;
+	margin: 0px 15px;
 	border-radius: 100% 4px;
 	transform: rotate(-45deg);
 }
 .lamp:nth-child(odd){
-    background: #8A2BE2;
+    background: #C0C0C0;
 	opacity: 1;
-	box-shadow: 1px 1px 15px #8A2BE2, -1px -1px 15px #8A2BE2;
+	box-shadow: 1px 1px 15px #C0C0C0, -1px -1px 15px #C0C0C0;
 	animation: lamp-pulse-1 0.8s linear 0s infinite alternate;
 }
 .lamp:nth-child(even){
@@ -30,7 +30,7 @@ body {
 	animation: lamp-pulse-2 0.8s linear 0s infinite alternate;
 }
 @keyframes lamp-pulse-1 {
-    from { box-shadow: 1px 1px 15px #8A2BE2, -1px -1px 15px #8A2BE2; opacity:1;}
+    from { box-shadow: 1px 1px 15px #C0C0C0, -1px -1px 15px #C0C0C0; opacity:1;}
 	to {box-shadow: none; opacity .3;}
 }
 @keyframes lamp-pulse-2 {
@@ -43,7 +43,6 @@ canvas {
 	top: 50%;
 	left: 50%;
 	transform:translateX(-50%) translateY(-50%);
-	box-shadow: 0 0 10px 0 #999
 }
 
  
@@ -52,6 +51,8 @@ canvas {
     function init() {
     var canvas = document.getElementById("canvas");
     var ctx = canvas.getContext("2d");
+	canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 	var w=canvas.width;
 	var h=canvas.height;
 	
@@ -91,14 +92,14 @@ window.onload = init;
 <body>
 <div id = "lights" style = "text-align:center"> </div>
     <script>
-        for (var i=0; i<20; i++){
+        for (var i=0; i<19; i++){
         var lamp = document.createElement("div");
         lamp.className = "lamp";
         var rand = Math.floor(Math.random()*180) + 1;
         lamp.style.transform = "rotate(" + rand + "deg)";
         document.getElementById("lights").appendChild(lamp);}
     </script>
-    <canvas id="canvas" width="778" height = "387"></canvas>
+    <canvas id="canvas"></canvas>
 	<div class="stars"></div>
     <div class="twinkling"></div>
     <div class="clouds"></div>
